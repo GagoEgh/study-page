@@ -1,0 +1,29 @@
+<div class="wrap">
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="submitForm()">
+        <nz-form-item>
+            <nz-form-control>
+                <nz-input-group nzPrefixIcon="user">
+                    <input type="email" nz-input formControlName="email" placeholder="email" />
+                </nz-input-group>
+                <p class="errore" *ngIf="getFormControlname('email','trim')">
+                    Please input your email
+                </p>
+                <p class="errore" *ngIf="getFormControlname('email','pattern')">
+                    email is incorrect
+                </p>
+            </nz-form-control>
+           
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control>
+                <nz-input-group nzPrefixIcon="lock">
+                    <input type="password" nz-input formControlName="password" placeholder="Password" />
+                </nz-input-group>
+                <p class="errore" *ngIf="getFormControlname('password','trim')">
+                    Please input your password
+                </p>
+            </nz-form-control>
+        </nz-form-item>
+        <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+    </form>
+</div>
