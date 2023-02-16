@@ -25,5 +25,8 @@
             </nz-form-control>
         </nz-form-item>
         <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
+        <p class="errore">{{erroreMsg}}</p>
+        <a routerLink="register">register</a>
     </form>
 </div>
+<router-outlet></router-outlet>

@@ -3,12 +3,12 @@
   "compileOnSave": false,
   "compilerOptions": {
 
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths":{
      
-      "@core/*":["app/core/*"],
-      "@views/*": ["app/views/*"],
-      "@shared/*":["app/shared/*"],
+      "@core/*":["src/app/core/*"],
+      "@views/*": ["src/app/views/*"],
+      "@shared/*":["src/app/shared/*"],
 
     },
     "outDir": "./dist/out-tsc",

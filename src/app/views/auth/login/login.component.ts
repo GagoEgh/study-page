@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import {
@@ -12,15 +12,17 @@ import {
 
 
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+
 })
 export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
+  erroreMsg!: string
 
   constructor(
     private _fb: FormBuilder,
@@ -42,24 +44,28 @@ export class LoginComponent implements OnInit {
   }
 
   getFormControlname(name: string, errore: string) {
-    return this.loginForm.get(name)?.dirty && this.loginForm.get(name)?.hasError(errore)
+    const isDirty = this.loginForm.get(name)?.dirty;
+    const hasError = this.loginForm.get(name)?.hasError(errore);
+    return isDirty && hasError
   }
+
 
   submitForm() {
     if (this.loginForm.valid) {
       const user = new LoginDTO(this.loginForm);
+
       this._loginService.LoggedIn(user)
         .subscribe({
           next: (res: IHttpResponse<ILoginResponse>) => {
-            localStorage.setItem('accessToken',res.data.accessToken);
+            localStorage.setItem('accessToken', res.data.accessToken);
             this._router.navigate(['main']);
-           
-            console.log(res.data.accessToken)
+          },
+          error: (err: string) => {
+            this.erroreMsg = err
           }
         })
 
     } else {
-
       Object.values(this.loginForm.controls).forEach((control: AbstractControl) => {
 
         if (control.invalid) {
