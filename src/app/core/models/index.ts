@@ -3,4 +3,5 @@ export * from './IHttpResponse';
 export * from './ILoginResponse';
 export * from './IUser';
 export * from './RegisterDTO';
-export * from './IRole'
+export * from './IRole';
+export * from './TrainingDTO'

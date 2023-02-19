@@ -1,0 +1,10 @@
+
+<div class="block">
+    <nz-card style="width:300px;" [nzTitle]="training.name" [nzExtra]="extraTemplate">
+        <p>description-{{training.description}}</p>
+        <p>type-{{training.type}}</p>
+    </nz-card>
+    <ng-template #extraTemplate>
+        <a>More</a>
+    </ng-template>
+</div>

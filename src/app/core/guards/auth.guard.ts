@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { LoginService } from '..';
 
 @Injectable({
@@ -10,7 +10,7 @@ export class AuthGuard implements CanActivate {
 
   constructor(
     private _loginService:LoginService,
-    private _router:Router
+    private _router:Router,
   ){}
 
   canActivate(
@@ -19,6 +19,8 @@ export class AuthGuard implements CanActivate {
       const accessToken = localStorage.getItem('accessToken');
 
       if(accessToken){
+        this._loginService.getUserData()
+        .subscribe()
         return true;
       }
      

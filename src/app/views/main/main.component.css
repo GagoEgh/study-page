@@ -1,18 +1,19 @@
-.ant-layout-sider{
+  .ant-layout-sider{
     height: 100vh !important;
   }
+
+  .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+  }
   
-  .trigger {
-      font-size: 18px;
-      line-height: 64px;
-      padding: 0 24px;
-      cursor: pointer;
-      transition: color 0.3s;
-    }
-  
-    .trigger:hover {
-      color: #1890ff;
-    }
+  .logo h1{
+    color: green;
+    margin: 0;
+  }
+
   
     .logo {
       height: 32px;
@@ -35,10 +36,13 @@
   
     .inner-content {
       padding: 24px;
-      background: #fff;
       min-height: 360px;
     }
   
     nz-footer {
       text-align: center;
+    }
+
+    .icon{
+      margin-left: 10px;
     }

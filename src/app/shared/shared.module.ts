@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
@@ -14,7 +11,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 
-
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 @NgModule({
   declarations: [],
@@ -22,6 +22,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    NzUploadModule,
     NzLayoutModule,
     NzBreadCrumbModule,
     NzCollapseModule,
@@ -30,12 +31,16 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzFormModule,
     NzButtonModule,
     NzInputModule,
-    NzMessageModule
+    NzMessageModule,
+    NzSelectModule,
+    NzCardModule,
+    NzDatePickerModule
   ],
-  exports:[
+  exports: [
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
+    NzUploadModule,
     NzLayoutModule,
     NzBreadCrumbModule,
     NzCollapseModule,
@@ -44,7 +49,11 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
     NzFormModule,
     NzButtonModule,
     NzInputModule,
-    NzMessageModule
-  ]
+    NzMessageModule,
+    NzSelectModule,
+    NzCardModule,
+    NzDatePickerModule
+  ],
+
 })
 export class SharedModule { }
