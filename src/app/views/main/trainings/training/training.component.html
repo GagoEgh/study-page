@@ -5,6 +5,6 @@
         <p>type-{{training.type}}</p>
     </nz-card>
     <ng-template #extraTemplate>
-        <a>More</a>
+        <a [routerLink]="['updateTrainig',training.id]">More</a>
     </ng-template>
 </div>

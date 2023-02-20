@@ -1,0 +1,25 @@
+.title{
+    margin-bottom: 40px;
+    border-bottom: 1px solid #b9b7b7;
+}
+
+.delete{
+    display: flex;
+    justify-content: space-around
+}
+
+
+.success{
+    color: rgb(9, 197, 9);
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin-top: 20px;
+}
+
+.errore{
+    margin-top: 20px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: tomato;
+    list-style: none;
+}

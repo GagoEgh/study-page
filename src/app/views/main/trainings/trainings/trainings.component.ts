@@ -1,4 +1,4 @@
-import { DatePipe } from '@angular/common';
+
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { IHttpResponse, TrainingDTO, trimRequiredValidator, } from '@core/index';
@@ -30,8 +30,7 @@ export class TrainingsComponent implements OnInit {
   getTrainings() {
     this.trainings$ = this._trainingsService.getTrainings()
       .pipe(map((res: IHttpResponse<TrainingDTO[]>) => {
-        console.log(res.data)
-        return res.data
+        return res.data.reverse()
       }))
   }
 
@@ -45,43 +44,22 @@ export class TrainingsComponent implements OnInit {
     })
   }
 
-  updateFile(event: Event) {
-    const file = (event.target as HTMLInputElement).files![0]
-    console.log(file);
-    this.trainingsForm.get('image')?.setValue(file)
-
-  }
-
   handleChange(info: NzUploadChangeParam): void {
-
     const file = info.file.originFileObj;
-    console.log(file);
     this.trainingsForm.get('image')?.setValue(file)
   }
+
   submitForm() {
 
-    //   YYYY-MM-DDThh:mm:ssTZD
     const date = new Date();
-
-    const isoDate =  date.toISOString();
-    console.log('iso',isoDate)
-    // const datePipe = new DatePipe('en-US');
-    // const newDate = datePipe.transform(isoDate, 'YYYY-MM-DDThh:mm:ssTZD');
-    // console.log(newDate)
+    const isoDate = date.toISOString();
     this.trainingsForm.get('date')?.setValue(isoDate);
-
     const training = this._trainingsService.createFormData(this.trainingsForm);
-
-
-    this._trainingsService.postTraining(training)
-      .subscribe({
-        next: (res) => {
-          console.log(res)
-        },
-        error: (err) => {
-          console.log(err)
-        }
-      })
-
+    if (this.trainingsForm.valid) {
+      this.trainings$ = this._trainingsService.postTraining(training)
+        .pipe(map((res: IHttpResponse<TrainingDTO[]>) => {
+          return res.data.reverse()
+        }))
+    }
   }
 }

@@ -1,0 +1,30 @@
+<h1 class="title">Vacancies</h1>
+<form class='form' nz-form [formGroup]="vacancieForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>description</nz-form-label>
+        <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
+            <input nz-input formControlName="description" type="text" />
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="7" nzRequired>shortDescription</nz-form-label>
+        <nz-form-control [nzSpan]="12">
+            <input nz-input formControlName="shortDescription" placeholder="shortDescription" type="text" />
+        </nz-form-control>
+    </nz-form-item>
+    <div class="delete">
+        <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+                <button nz-button nzType="primary">update</button>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+                <button nz-button type="button" nzType="default" nzDanger (click)="delete()">Delete</button>
+            </nz-form-control>
+        </nz-form-item>
+        <button nz-button type="button" nzType="primary"  (click)="goto()">go to vacancies</button>
+    </div>
+    <p [ngClass]="isSuccess?'success':'errore'">{{updateVacancie$|async}}</p>
+</form>

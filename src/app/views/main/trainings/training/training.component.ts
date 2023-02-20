@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TrainingDTO } from '@core/models';
 
 @Component({
@@ -11,7 +12,14 @@ export class TrainingComponent implements OnInit{
   @Input()training!:TrainingDTO;
   
 
-  constructor(){}
+  constructor(
+    private _router:Router
+  ){}
+
   ngOnInit(): void {
   }
+
+  // update(id:any){
+  //   this._router.navigate(['main','trainings','updateTrainig',id])
+  // }
 }

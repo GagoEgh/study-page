@@ -1,26 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {  Router } from '@angular/router';
 import { RegisterService } from '@core/api-services';
 import { IRole, RegisterDTO } from '@core/models';
 import { trimRequiredValidator } from '@core/validators';
 import { confirmPassword } from '@core/validators/confirmPassword';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
   registerForm!: FormGroup;
-  role$ = new Observable<IRole[]>()
+  role$ = new Observable<IRole[]>();
+  unSubscribe$ = new Subject<void>();
 
   constructor(
     private _fb: FormBuilder,
     private _registerService:RegisterService,
     private _rout:Router
     ) { }
+ 
 
   ngOnInit(): void {
     this.role$ = this._registerService.getRole()
@@ -46,6 +48,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       const register = new RegisterDTO(this.registerForm);
       this._registerService.registration(register)
+      .pipe(takeUntil(this.unSubscribe$))
       .subscribe({
         next:()=>{
           this._rout.navigate(['/'])
@@ -61,6 +64,13 @@ export class RegisterComponent implements OnInit {
         }
       });
     }
+  }
+
+
+  ngOnDestroy(): void {
+    this.unSubscribe$.next();
+    this.unSubscribe$.complete()
+
   }
 
 }

@@ -1,0 +1,8 @@
+<div class="block">
+    <nz-card style="width:300px;" [nzTitle]="vacancie.description" [nzExtra]="extraTemplate">
+        <p appHtmlElement [description]="vacancie.shortDescription">{{vacancie.shortDescription}}</p>
+    </nz-card>
+    <ng-template #extraTemplate>
+        <a [routerLink]="['updateVacancie',vacancie.id]">More</a>
+    </ng-template>
+</div>

@@ -1,4 +1,4 @@
-<form nz-form [formGroup]="trainingsForm" (ngSubmit)="submitForm()">
+<form nz-form [formGroup]="trainingForm" (ngSubmit)="submitForm()">
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>name</nz-form-label>
         <nz-form-control [nzSpan]="12" nzValidatingTip="Validating...">
@@ -19,9 +19,7 @@
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSpan]="7">file</nz-form-label>
-        <nz-upload nzAction=""
-            [nzHeaders]="{ authorization: 'authorization-text' }" 
-            (nzChange)="handleChange($event)">
+        <nz-upload nzAction="" [nzHeaders]="{ authorization: 'authorization-text' }" (nzChange)="handleChange($event)">
             <button nz-button type="button">
                 <span nz-icon nzType="upload"></span>
                 Click to Upload
@@ -29,15 +27,20 @@
         </nz-upload>
 
     </nz-form-item>
-    <nz-form-item>
-        <nz-form-control [nzOffset]="7" [nzSpan]="12">
-            <button nz-button nzType="primary">Submit</button>
-        </nz-form-control>
-    </nz-form-item>
+
+    <div class="delete">
+        <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+                <button nz-button nzType="primary" [disabled]="trainingForm.invalid">update</button>
+            </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+                <button nz-button type="button" nzType="default" nzDanger (click)="delte()">Delete</button>
+            </nz-form-control>
+        </nz-form-item>
+        <button nz-button type="button" nzType="primary"  (click)="goto()">go to trainings</button>
+    </div>
+    <p [ngClass]="isSuccess?'success':'errore'">{{updateTraining$|async}}</p>
 </form>
-
-
-<div class="wrap">
-    <app-training *ngFor="let training of trainings$|async" [training]="training">
-    </app-training>
-</div>

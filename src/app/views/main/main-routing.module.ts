@@ -10,6 +10,7 @@ const routes: Routes = [
       { path: '', redirectTo:'dashboard',pathMatch:'full'},
       {path:'dashboard',loadChildren:()=>import('./index').then(m=>m.DashboardModule)},
       {path:'trainings',loadChildren:()=>import('./index').then(m=>m.TrainingsModule)},
+      {path:'vacancies',loadChildren:()=>import('./index').then(m=>m.VacanciesModule)},
       { path: 'user', component: UserComponent },
     ]
   },

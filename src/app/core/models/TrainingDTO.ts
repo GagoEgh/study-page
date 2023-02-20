@@ -1,6 +1,7 @@
 import { FormGroup } from "@angular/forms";
 
 export class TrainingDTO {
+    id?:number
     name!: string;
     description!: string;
     date?: string;

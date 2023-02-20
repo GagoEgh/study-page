@@ -8,9 +8,7 @@ import {
   LoginDTO,
   trimRequiredValidator
 } from '@core/index';
-
-
-
+import { Subject, takeUntil } from 'rxjs';
 
 
 @Component({
@@ -23,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   loginForm!: FormGroup;
   erroreMsg!: string
-
+  unSubscribe$ = new Subject<void>()
   constructor(
     private _fb: FormBuilder,
     private _loginService: LoginService,
@@ -55,6 +53,7 @@ export class LoginComponent implements OnInit {
       const user = new LoginDTO(this.loginForm);
 
       this._loginService.LoggedIn(user)
+      .pipe(takeUntil(this.unSubscribe$))
         .subscribe({
           next: (res: IHttpResponse<ILoginResponse>) => {
             localStorage.setItem('accessToken', res.data.accessToken);
@@ -74,6 +73,12 @@ export class LoginComponent implements OnInit {
         }
       });
     }
+
+  }
+
+  ngOnDestroy(): void {
+    this.unSubscribe$.next();
+    this.unSubscribe$.complete()
 
   }
 }
