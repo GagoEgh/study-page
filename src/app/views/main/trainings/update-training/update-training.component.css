@@ -4,6 +4,11 @@
     justify-content: space-around
 }
 
+.title{
+    margin-bottom: 40px;
+    border-bottom: 1px solid #b9b7b7;
+}
+
 .success{
     color: rgb(9, 197, 9);
     font-size: 18px;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { VacanciesDTO } from '@core/models';
 import { trimRequiredValidator } from '@core/validators';
 import { catchError, map, Observable, of } from 'rxjs';

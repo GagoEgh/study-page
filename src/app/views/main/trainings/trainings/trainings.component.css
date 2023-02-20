@@ -3,3 +3,8 @@
     flex-wrap: wrap;
     justify-content: space-between;
 }
+
+.title{
+    margin-bottom: 40px;
+    border-bottom: 1px solid #b9b7b7;
+}

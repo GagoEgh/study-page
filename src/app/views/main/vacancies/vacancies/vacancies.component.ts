@@ -16,9 +16,7 @@ export class VacanciesComponent implements OnInit {
   vacancieForm!: FormGroup
   constructor(
     private vacanciesService: VacanciesService,
-    private _fb: FormBuilder) {
-
-  }
+    private _fb: FormBuilder) {}
 
   ngOnInit(): void {
     this.getvacancies()
